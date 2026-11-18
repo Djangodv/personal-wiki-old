@@ -1,0 +1,55 @@
+/* # is an id selector used to target a single specific element */
+#sideNav {
+	height: 100%;
+	width: 150px;
+	position: fixed;
+	z-index: 1;
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px;
+  transition: width 0.3s;
+}
+
+#sideNav a, button{
+	color: #ffffff;
+	display: block;
+}
+
+/* #dropdownMenu { */
+/* 	padding-left: 8px; */
+/* } */
+
+#mainContent {
+	/* position: fixed; */
+	margin-left: 220px;
+	
+}
+
+.dropdown-container {
+	/* display: none; */
+}
+
+/* Change color upon hovering */
+code:hover {
+
+  color: #f1f1f1;
+
+}
+
+.tooltip {
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.show {
+  visibility: visible;
+  opacity: 1;
+}

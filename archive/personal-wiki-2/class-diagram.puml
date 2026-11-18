@@ -1,0 +1,26 @@
+```puml
+@startuml
+
+class MainContent {
+    +displayContent(file: String): Promise<String>
+}
+
+class GithubApi {
+    static url: String
+    static data: Any
+    +retrieveData(): Promise<Any>
+}
+
+class SideNav {
+    static divElement: HTMLElement
+    GithubApi: GithubApi
+    APIData: Any
+    +registerClickEvent(element: HTMLElement, dataEntry: Any): Promise<Void>
+    +displayItems(dataEntry: Any): Promise<HTMLElement>
+    +iterateData(): Promise<Void>
+}
+
+MainContent --> GithubApi
+
+@enduml
+```
