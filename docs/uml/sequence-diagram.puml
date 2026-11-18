@@ -1,0 +1,76 @@
+' Source: https://www.cs.odu.edu/~zeil/cs330/latest/Public/sequenceDiagrams/index.html
+
+@startuml sequence-diagram
+
+script.js -> serviceWorker: register()
+activate serviceWorker
+deactivate serviceWorker
+
+script.js -> githubApi: getDirectoryContents(directoryPath)
+activate githubApi
+
+githubApi -> script.js: return data
+deactivate githubApi
+
+script.js -> sideNav: displayEntries(apiData, clickEvent)
+activate sideNav
+
+sideNav -> dropdownMenu: createExpandButton(buttonElement, filename, filePath)
+
+activate dropdownMenu
+
+ref over dropdownMenu
+toggle() is called.
+end ref
+
+deactivate dropdownMenu
+deactivate sideNav
+
+...user clicks a button...
+
+sideNav -> mainView: displayContent(filepath)
+activate mainView
+
+mainView -> githubApi: retrieveFile(filePath)
+activate githubApi
+
+githubApi -> mainView: return markdownText
+deactivate githubApi
+
+mainView -> markedUtil: parse(markdownText)
+activate markedUtil
+
+markedUtil -> mainView: return content
+deactivate markedUtil
+
+mainView -> masonryLayout: rearrange(elementId)
+deactivate mainView
+
+sideNav ->  dropdownMenu: collapseAll()
+
+sideNav -> dropdownMenu: toggle(element, filename, filePath)
+activate dropdownMenu
+
+dropdownMenu -> dropdownMenu: generateHeaders()
+activate dropdownMenu
+
+dropdownMenu -> githubApi: retrieveFile(filePath)
+activate githubApi
+
+githubApi -> dropdownMenu: return markdownText
+deactivate githubApi
+
+dropdownMenu -> markedUtil: extractHeaders(markdownText)
+activate markedUtil
+
+markedUtil -> dropdownMenu: return titlesList
+deactivate markedUtil
+
+deactivate dropdownMenu
+deactivate dropdownMenu
+
+ref over dropdownMenu, mainView
+displayContent() is called.
+end ref
+
+@enduml
