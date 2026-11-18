@@ -1,4 +1,4 @@
-@startuml
+@startuml activity-diagram
 
 start
 
@@ -16,10 +16,9 @@ case (button-expand \nclicked)
     :dropdownMenu.toggle;
     ' :dropdownMenu.extractHeaders;
 case (button-entry \nclicked)
-    ' :sideNav.disableButton;
-    if ( file shown? ) then ( != buttonEntry.name )
+    :mainView.displayContent;
+    if ( file shown? ) then ( != path attribute )
         fork
-            :mainView.displayContent;
             :githubApi.retrieveFile;
             :markedUtil.parse;
             :hljs.highlightAll;

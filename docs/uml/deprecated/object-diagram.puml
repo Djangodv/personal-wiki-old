@@ -1,0 +1,21 @@
+object script <<main>>
+object sideNav
+object mainView
+object masonryLayout
+object dropdownMenu
+object githubApi
+object markedUtil
+object serviceWorker
+
+script --> serviceWorker : register()
+script --> githubApi : getDirectoryContents()
+script --> sideNav : displayEntries()
+
+note right of sideNav: Entries refer to the indiviual \nfiles inside a wiki page
+
+sideNav --> script : entryClicked()
+sideNav --> mainView : displayContent()
+
+mainView --> githubApi : retrieveFile()
+mainView --> markedUtil : parse()
+mainView --> masonryLayout : rearrange()
